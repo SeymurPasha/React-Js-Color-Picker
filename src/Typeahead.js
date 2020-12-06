@@ -21,68 +21,22 @@ class Typeahead extends React.Component {
         this.state = {
         currentColor: '',
         list:[],
-        activelement:''
         }
+        this.colorInput = React.createRef();
     }
     
     componentDidMount() {
-   
-    document.onkeydown = (e) => {
-       
-
-        if(e.keyCode === 27) {
-        this.setState({
-            list: []
-        })
     
-        }
-         if(e.keyCode === 13) {
-        this.setState({
-        currentColor:this.state.activelement
-        })
-         this.setState({
-             list: []
-         })
-        }
-        
-       
-        if(e.keyCode === 9) {
-        let active = ''
-        if(document.activeElement.tabIndex === 1 && this.state.currentColor) {
-        active = document.activeElement.parentNode.nextSibling.childNodes[0].textContent
-        }
-        else {
-        if(document.activeElement.nextSibling) {
-        active = document.activeElement.nextSibling.textContent
-        }   
-        }
-        this.setState({
-        activelement:active
-        })
-        }  
-        
-        if(e.shiftKey && e.keyCode === 9) {
-            let active = ''
-            if(document.activeElement.previousSibling) {
-            active = document.activeElement.previousSibling.textContent
-            }
-            else {
-            active = ''
-            }
-            this.setState({
-            activelement:active
-            })
-        }
-
-    }
     document.onclick = () => {
-        this.setState({
-        list: []
-        })
+        this.hideList()
+    }
+    document.onkeydown = (e) => {
+       if(e.keyCode === 27) {
+       this.hideList()
+       }
     }
     }
 
-    
        
     colorHandler = (e) => {
         this.setState({
@@ -96,27 +50,28 @@ class Typeahead extends React.Component {
         list:list
     })
 }
-
+   
     setColor = (color) => {
     
     this.setState({
         currentColor:color
     })
-    this.setState({
-        list: []
-    })
+    this.hideList()
     }
     
+    hideList = () => {
+    this.setState({
+        list: []
+        })
    
-    
+    }
     render() {
-        
 
         return (
             
             <TypeAhead color = {this.state.currentColor}>
-            <Input currentColor = {this.state.currentColor} colorHandler = {this.colorHandler} />
-            <ColorItems list = {this.state.list} currentColor = {this.state.currentColor} setColor = {this.setColor} ></ColorItems>
+            <Input currentColor = {this.state.currentColor} colorHandler = {this.colorHandler} colorInput = {this.colorInput} />
+            <ColorItems list = {this.state.list} currentColor = {this.state.currentColor} setColor = {this.setColor}  ></ColorItems>
             </TypeAhead>
         )
 

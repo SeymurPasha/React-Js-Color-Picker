@@ -37,7 +37,10 @@ function ColorItem(props) {
    
     return (
         
-        <Color color = {props.color}  onClick = {() => props.setColor(props.color)} tabIndex = '2'>
+        <Color color = {props.color}  
+        onClick = {() => props.setColor(props.color)} 
+        onKeyDown = {(e) => e.keyCode === 13 ? props.setColor(props.color) : null}
+        tabIndex = {2}>
         {makeBold()}
         </Color>
     )

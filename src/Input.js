@@ -4,7 +4,13 @@ export default function Input(props) {
     return (
         <div className = 'input'>
         <label>Search for a Color</label>
-        <input value = {props.currentColor} onChange = {props.colorHandler} type="text"  autoFocus tabIndex = '1' spellCheck = {false}/> 
+        <input
+        tabIndex = {1}
+        value = {props.currentColor}
+        onChange = {props.colorHandler} 
+        type="text"   
+        ref = {props.colorInput} 
+        spellCheck = {false}/>
         </div>
     )
 }

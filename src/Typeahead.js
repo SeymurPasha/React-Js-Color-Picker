@@ -1,16 +1,17 @@
 import React from 'react'
 import ColorItems from './ColorItems'
 import Input from './Input'
-import styled from 'styled-components'
+import styled  from 'styled-components'
 import PropTypes from 'prop-types'
 
 const TypeAhead = styled.div`
         width:100%;
-        height:100%;
+        height:100vh;
         display:flex;
         align-items:center;
         flex-direction:column;
-        background-color: ${props => props.color}
+        background-color: ${props => props.color};
+        transition: background .3s ease-in;
       `;
 
 
@@ -42,10 +43,12 @@ class Typeahead extends React.Component {
         this.setState({
         currentColor:e.target.value
         }, () => this.filterList())
+
+        console.log(this.state.currentColor)
     }
     
     filterList = () => {
-    let list = this.props.list.filter(color => this.state.currentColor.length !== 0 ? color.toLowerCase().includes(this.state.currentColor) : null)
+    let list = this.props.list.filter(color => this.state.currentColor.length !== 0 ? color.toLowerCase().includes(this.state.currentColor.toLowerCase()) : null)
     this.setState({
         list:list
     })
@@ -68,7 +71,6 @@ class Typeahead extends React.Component {
     render() {
 
         return (
-            
             <TypeAhead color = {this.state.currentColor}>
             <Input currentColor = {this.state.currentColor} colorHandler = {this.colorHandler} colorInput = {this.colorInput} />
             <ColorItems list = {this.state.list} currentColor = {this.state.currentColor} setColor = {this.setColor}  ></ColorItems>

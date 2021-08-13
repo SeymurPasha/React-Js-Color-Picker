@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Color = styled.div`
-      width:70%;
+      width:100%;
       padding-left:20px;
       margin:4px;
       cursor: pointer;

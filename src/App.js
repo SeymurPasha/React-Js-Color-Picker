@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.scss'
+import './App.css'
 import Typeahead from './Typeahead'
 
 function App(props) {

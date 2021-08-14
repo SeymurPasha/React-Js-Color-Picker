@@ -6,3 +6,10 @@
   font-weight: 300;
 }/*# sourceMappingURL=App.css.map */
 
+@media only screen and (max-width:600px) {
+font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+letter-spacing: 2px;
+word-spacing: 2px;
+font-weight: 500;
+}
+
